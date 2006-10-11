@@ -1,0 +1,1 @@
+./Parser test.pl -o test && g++ -D__BASEPREDICATES__ -g test.cpp testcode.cpp prologenvironment.cpp prolognames.cpp basepredicates.cpp frogprolog.cpp lex.yy.cc externparser.cpp plparse.tab.c prolog_driver.cpp enginefactory.cpp -lfl -o test && gdb test

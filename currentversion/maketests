@@ -1,0 +1,40 @@
+#!/bin/bash
+#kommentar
+basedir=`pwd`;
+currentpath="$PATH";
+testpassed=0;
+tests=0;
+
+echo "Setting Path to $basedir";
+export HP_BASEDIR=$basedir;
+export PATH=$currentpath:$basedir/debug/src:$basedir/src
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$basedir/modules
+
+> ./tmp/test.log
+
+echo "Test Basisfunktionalitaet"
+# echo "   Unifikation"
+
+for X in ./examples/testcases/base/*.pl 
+do
+
+prog=$X;
+tests=$(( tests+1))
+echo "   $tests: $prog"
+if frogprolog $prog -o ./tmp/test >> ./tmp/test.log; then
+  
+  ./tmp/test > ./tmp/output$tests.txt
+  if diff -w ./tmp/output$tests.txt $X.ex; then
+     # echo "   ok"
+      testpassed=$(( testpassed +1 ))
+  else
+      echo "Error: Das Program $prog hat keinen korrekten Output geliefert"
+  fi
+else
+  echo "Error: Das Program $prog lies sich nicht compilieren"
+fi
+
+
+
+done
+echo "$testpassed von $tests bestanden";

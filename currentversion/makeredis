@@ -1,0 +1,9 @@
+mkdir redis
+cp src/libfrog.a redis
+cp src/libbip.a redis
+cp src/prologenvironment.h redis
+cp src/basepredicates.h redis
+cp src/prolognames.h redis
+cp src/frogprolog.h redis
+cp src/bip.h redis
+cp src/bip.module redis

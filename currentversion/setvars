@@ -1,0 +1,9 @@
+#!/bin/bash
+#kommentar
+basedir=`pwd`;
+currentpath="$PATH";
+echo "Setting Path to $basedir";
+export HP_BASEDIR=$basedir;
+export PATH=$currentpath:$basedir/debug/src;
+
+frogprolog ./testprogs/dea.pl -o ./tmp/test
